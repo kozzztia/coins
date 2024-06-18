@@ -2,8 +2,8 @@ import styles from "css/page.module.css";
 import { Coin } from "types/coins";
 
 async function fetchCoins() {
-  const res = await fetch(`https://coins-two-cyan.vercel.app/api/coins`, {
-  // const res = await fetch(`${process.env.API_BASE_URL}/api/coins`, {
+  // const res = await fetch(`https://coins-two-cyan.vercel.app/api/coins`, {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/coins`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -1,29 +1,32 @@
-'use client'
 import styles from "css/page.module.css";
 import { Coin } from "types/coins";
-import { useEffect, useState } from "react";
 
-export default function Home() {
-  const [coins, setCoins] = useState<Coin[]>([]);
+async function fetchCoins() {
+  const res = await fetch('https://coins-two-cyan.vercel.app/api/coins', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    },
+    cache: 'no-store', // Make sure this fetches fresh data every time
+  });
 
-  useEffect(() => {
-    fetch('/api/coins', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
-      }
-    })
-    .then(res => res.json())
-    .then(data => setCoins(data.result))
-    .catch(err => console.error('Failed to fetch coins:', err));
-  }, []);
+  if (!res.ok) {
+    throw new Error('Failed to fetch coins');
+  }
+
+  const data = await res.json();
+  return data.result;
+}
+
+export default async function Home() {
+  const coins: Coin[] = await fetchCoins();
 
   return (
     <main className={styles.main}>
-      {coins?.map((coin: Coin) => (
+      {coins.map((coin) => (
         <div key={coin.id}>
           <h1>{coin.name}</h1>
           <p>{coin.symbol}</p>

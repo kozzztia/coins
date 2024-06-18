@@ -4,8 +4,8 @@ import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { Coin } from "types/coins";
 
-async function fetchCoins(url : string) {
-  const res = await fetch(`${url}/api/coins`, {
+async function fetchCoins() {
+  const res = await fetch(`${process.env.API_BASE_URL}/api/coins`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -29,16 +29,16 @@ async function fetchCoins(url : string) {
 
 export default async function Home() {
   const headersList = headers();
+  // const domain = headersList.get('host') || "";
   const fullUrl = headersList.get('referer') || "";
 
   console.log(fullUrl);
 
 
-  const coins: Coin[] = await fetchCoins(fullUrl);
+  const coins: Coin[] = await fetchCoins();
 
   return (
     <main className={styles.main}>
-      <p>{fullUrl}</p>
       {coins.map((coin) => (
         <div key={coin.id}>
           <h1>{coin.name}</h1>

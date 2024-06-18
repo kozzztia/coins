@@ -2,9 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { NextResponse } from 'next/server';
 
-
 const filePath = path.resolve(process.cwd(), 'src/app/api/coins/coins.json');
-
 
 async function readCoinsFromFile() {
   try {
@@ -16,13 +14,17 @@ async function readCoinsFromFile() {
   }
 }
 
-
-export async function GET(request: Request, response : Response) {
+export async function GET() {
   try {
     const result = await readCoinsFromFile();
-    return NextResponse.json({ result , status: 200}, { status: 200 });
+    const response = NextResponse.json({ result }, { status: 200 });
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+    return response;
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch coins' }, { status: 500 });
+    const response = NextResponse.json({ error: 'Failed to fetch coins' }, { status: 500 });
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    return response;
   }
 }
-

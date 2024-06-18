@@ -1,9 +1,11 @@
 import styles from "css/page.module.css";
+import { request } from "http";
+import { headers } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 import { Coin } from "types/coins";
 
-async function fetchCoins() {
-  // const res = await fetch(`https://coins-two-cyan.vercel.app/api/coins`, {
-  const res = await fetch(`${process.env.API_BASE_URL}/api/coins`, {
+async function fetchCoins(url : string) {
+  const res = await fetch(`${url}/api/coins`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -22,11 +24,21 @@ async function fetchCoins() {
   return data.result;
 }
 
+
+
+
 export default async function Home() {
-  const coins: Coin[] = await fetchCoins();
+  const headersList = headers();
+  const fullUrl = headersList.get('referer') || "";
+
+  console.log(fullUrl);
+
+
+  const coins: Coin[] = await fetchCoins(fullUrl);
 
   return (
     <main className={styles.main}>
+      <p>{fullUrl}</p>
       {coins.map((coin) => (
         <div key={coin.id}>
           <h1>{coin.name}</h1>

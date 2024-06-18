@@ -17,10 +17,16 @@ async function readCoinsFromFile() {
 }
 
 
-export async function GET() {
+export async function GET(request: Request, response : Response) {
   try {
-    const coins = await readCoinsFromFile();
-    return NextResponse.json({ coins }, { status: 200 });
+    const result = await readCoinsFromFile();
+    const data = NextResponse.json({ result , status: 200}, { status: 200 });
+    data.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    data.headers.set('Pragma', 'no-cache');
+    data.headers.set('Expires', '0');
+    return data
+
+
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch coins' }, { status: 500 });
   }

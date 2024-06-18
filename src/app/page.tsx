@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
    fetch('http://localhost:3000/api/coins')
-   .then(res => res.json().then(data=> setCoins(data.coins)))
+   .then(res => res.json().then(data=> setCoins(data.result)))
   }, []);
 
   return (

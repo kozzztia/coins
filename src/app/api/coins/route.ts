@@ -17,14 +17,20 @@ async function readCoinsFromFile() {
 export async function GET() {
   try {
     const result = await readCoinsFromFile();
-    const response = NextResponse.json({ result }, { status: 200 });
+    const response = NextResponse.json({ result });
+
     response.headers.set('Access-Control-Allow-Origin', '*');
     response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+
     return response;
   } catch (error) {
     const response = NextResponse.json({ error: 'Failed to fetch coins' }, { status: 500 });
+
     response.headers.set('Access-Control-Allow-Origin', '*');
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+
     return response;
   }
 }

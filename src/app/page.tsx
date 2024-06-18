@@ -4,21 +4,21 @@ import { Coin } from "types/coins";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
   const [coins, setCoins] = useState<Coin[]>([]);
 
-
   useEffect(() => {
-   fetch('http://localhost:3000/api/coins',
-     {
-      method: 'GET', 
-      headers: { 
+    fetch('/api/coins', {
+      method: 'GET',
+      headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0'
-      }}, )
-   .then(res => res.json().then(data=> setCoins(data.result)))
+      }
+    })
+    .then(res => res.json())
+    .then(data => setCoins(data.result))
+    .catch(err => console.error('Failed to fetch coins:', err));
   }, []);
 
   return (

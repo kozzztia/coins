@@ -39,6 +39,7 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
+            <p>{fullUrl}</p>
       {coins.map((coin) => (
         <div key={coin.id}>
           <h1>{coin.name}</h1>

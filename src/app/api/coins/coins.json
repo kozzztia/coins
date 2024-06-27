@@ -2,41 +2,66 @@
   {
     "id": "bitcoin ",
     "name": "Bitcoin",
-    "symbol": "BTC",
-    "market_cap_rank": 1,
-    "price": 30000,
-    "volume": 3000000000
+    "symbol": "BTC"
   },
   {
     "id": "ethereum",
     "name": "Ethereum",
-    "symbol": "ETH",
-    "market_cap_rank": 2,
-    "price": 2000,
-    "volume": 2000000000
+    "symbol": "ETH"
   },
   {
     "id": "ripple",
     "name": "Ripple",
-    "symbol": "XRP",
-    "market_cap_rank": 3,
-    "price": 0.5,
-    "volume": 1000000000
+    "symbol": "XRP"
   },
   {
     "id": "litecoin",
     "name": "Litecoin",
-    "symbol": "LTC",
-    "market_cap_rank": 4,
-    "price": 150,
-    "volume": 500000000
+    "symbol": "LTC"
   },
   {
     "id": "cardano",
     "name": "Cardano",
-    "symbol": "ADA",
-    "market_cap_rank": 5,
-    "price": 1.5,
-    "volume": 400000000
+    "symbol": "ADA"
+  },
+  {
+    "id": "dogecoin",
+    "name": "Dogecoin",
+    "symbol": "DOGE"
+  },
+  {
+    "id": "polkadot",
+    "name": "Polkadot",
+    "symbol": "DOT"
+  },
+  {
+    "id": "usd-coin",
+    "name": "USD Coin",
+    "symbol": "USDC"
+  },
+  {
+    "id": "binance-coin",
+    "name": "Binance Coin",
+    "symbol": "BNB"
+  },
+  {
+    "id": "shiba-inu",
+    "name": "Shiba Inu",
+    "symbol": "SHIB"
+  },
+  {
+    "id": "dogelon-mars",
+    "name": "Dogelon Mars",
+    "symbol": "ELON"
+  },
+  {
+    "id": "chainlink",
+    "name": "Chainlink",
+    "symbol": "LINK"
+  },
+  {
+    "id": "wrapped-bitcoin",
+    "name": "Wrapped Bitcoin",
+    "symbol": "WBTC"
   }
 ]
